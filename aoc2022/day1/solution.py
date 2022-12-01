@@ -10,6 +10,6 @@ def solve_part2(entries):
 
 
 if __name__ == "__main__":  # pragma: no cover
-    entries = get_input("aoc2022/CHANGEME/input")
+    entries = get_input("aoc2022/day1/input")
     print(solve_part1(entries))
     print(solve_part2(entries))
