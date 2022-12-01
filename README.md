@@ -1,7 +1,5 @@
 # My solutions for Advent of Code 2022
 
-![Python package](https://github.com/vmorris/aoc2022/workflows/Python%20package/badge.svg)
-
 ## Setup
 
 After cloning this repository, create a virtual environment, activate it, and install.
