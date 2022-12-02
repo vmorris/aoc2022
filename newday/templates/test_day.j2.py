@@ -1,8 +1,8 @@
-from aoc2022.dayCHANGEME import solution
+from aoc2022.day{{ day_number }} import solution
 from aoc2022.util import get_input
 
 
-input_data = get_input("tests/testinput.dayCHANGEME", "int")
+input_data = get_input("tests/testinput.day{{ day_number }}")
 
 
 def test_solve_part1():
