@@ -1,7 +1,7 @@
 from aoc2022.util import get_input
 
 
-def calculate_score_round1(round):
+def calculate_score_part1(round):
     opponent_play = round[0]
     self_play = round[1]
     result = 0
@@ -38,11 +38,11 @@ def calculate_score_round1(round):
 def solve_part1(entries):
     total = 0
     for entry in entries:
-        total += calculate_score_round1(entry)
+        total += calculate_score_part1(entry)
     return total
 
 
-def calculate_score_round2(round):
+def calculate_score_part2(round):
     opponent_play = round[0]
     win_lose_draw = round[1]
     result = 0
@@ -85,7 +85,7 @@ def calculate_score_round2(round):
 def solve_part2(entries):
     total = 0
     for entry in entries:
-        total += calculate_score_round2(entry)
+        total += calculate_score_part2(entry)
     return total
 
 
