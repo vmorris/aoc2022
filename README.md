@@ -14,10 +14,8 @@ aoc2022 $ . venv/bin/activate
 ## Create new daily workspace
 
 ```
-(venv) aoc2022 $ ./newday/newday.sh <day#>
+(venv) aoc2022 $ newday 1
 ```
-
-Edit the newly created files to update CHANGEME to the day #
 
 ## Run daily solutions
 
@@ -31,4 +29,4 @@ eg.
 ## Test Suite
 Run individual days with `pytest tests/test_day##.py`
 
-Run the whole test suite with `pytest --cov=aoc2021`
+Run the whole test suite with `pytest --cov=aoc2022`
