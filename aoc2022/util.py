@@ -25,3 +25,11 @@ def list_rindex(li, x):
         if li[i] == x:
             return i
     raise ValueError(f"{x} is not in the list.")
+
+
+def divide_chunks(items, step):
+    """Divide a list into smaller chunks"""
+    start = 0
+    end = len(items)
+    for i in range(start, end, step):
+        yield items[i : i + step]

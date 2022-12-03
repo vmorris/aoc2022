@@ -19,7 +19,7 @@ def newday(day):
         autoescape=select_autoescape(),
     )
     solution_template = env.get_template("solution.j2.py")
-    test_template = env.get_template("test_day.j2.py")
+    test_template = env.get_template("_test_day.j2.py")
     solution_render = solution_template.render(day_number=day)
     test_render = test_template.render(day_number=day)
 
