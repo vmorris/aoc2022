@@ -6,6 +6,8 @@ def get_input(f, type="str"):
         return [int(i) for i in input]
     if type == "split":
         return [i.split() for i in input]
+    if type == "csv":
+        return [i.split(",") for i in input]
     if type == "int-matrix":
         result = list()
         for line in input:
