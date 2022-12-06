@@ -8,6 +8,9 @@ def get_input(f, type="str"):
         if type == "str":
             """list of strings"""
             return input
+        if type == "single_str":
+            """just the one string"""
+            return input[0]
         if type == "int":
             """list of integers"""
             return [int(i) for i in input]
