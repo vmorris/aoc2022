@@ -1,5 +1,4 @@
 from aoc2022.day6 import solution
-from aoc2022.util import get_input
 
 
 input_data = [

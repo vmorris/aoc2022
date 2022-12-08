@@ -1,7 +1,15 @@
 import setuptools
 
-dependencies = ["wheel", "Jinja2", "Click"]
-tests_dependencies = ["pytest", "pytest_cov"]
+dependencies = [
+    "wheel",
+    "Jinja2",
+    "Click",
+    "anytree",
+]
+tests_dependencies = [
+    "pytest",
+    "pytest_cov",
+]
 extras = {"test": tests_dependencies}
 
 setuptools.setup(
@@ -15,6 +23,8 @@ setuptools.setup(
     tests_require=tests_dependencies,
     extras_require=extras,
     entry_points={
-        "console_scripts": ["newday = newday.newday:newday"],
+        "console_scripts": [
+            "newday = newday.newday:newday",
+        ],
     },
 )
