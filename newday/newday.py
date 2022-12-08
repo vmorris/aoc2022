@@ -9,6 +9,8 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 @click.argument("day")
 def newday(day):
     """Create new day in advent of code."""
+    if len(day) == 1:
+        day = f"0{day}"
     click.echo(f"Creating new environment for day {day} ...")
     solution_path = os.path.abspath(f"aoc2022/day{day}")
     test_path = os.path.abspath(f"tests")
