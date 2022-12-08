@@ -4,7 +4,7 @@
 
 After cloning this repository, create a virtual environment, activate it, and install.
 
-```
+```bash
 $ cd aoc2022
 aoc2022 $ python3 -m venv venv
 aoc2022 $ . venv/bin/activate
@@ -13,13 +13,13 @@ aoc2022 $ . venv/bin/activate
 
 ## Create new daily workspace
 
-```
+```bash
 (venv) aoc2022 $ newday 1
 ```
 
 ## Run daily solutions
 
-```
+```bash
 (venv) [vmorris@tpp53 aoc2022]$ python aoc2022/day01/solution.py 
 69626
 206780
@@ -28,7 +28,7 @@ aoc2022 $ . venv/bin/activate
 ## Test Suite
 Run individual days with `pytest tests/test_day##.py`
 
-```
+```bash
 (venv) [vmorris@tpp53 aoc2022]$ pytest --cov=aoc2022
 =============================== test session starts ===============================
 platform linux -- Python 3.11.0, pytest-7.2.0, pluggy-1.0.0
