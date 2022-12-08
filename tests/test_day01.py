@@ -1,8 +1,8 @@
-from aoc2022.day1 import solution
+from aoc2022.day01 import solution
 from aoc2022.util import get_input
 
 
-input_data = get_input("tests/testinput.day1")
+input_data = get_input("tests/testinput.day01")
 
 
 def test_solve_part1():

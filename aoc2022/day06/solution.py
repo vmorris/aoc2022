@@ -23,6 +23,6 @@ def solve_part2(datastream):
 
 
 if __name__ == "__main__":  # pragma: no cover
-    entries = get_input("aoc2022/day6/input", "single_str")
+    entries = get_input("aoc2022/day06/input", "single_str")
     print(solve_part1(entries))
     print(solve_part2(entries))

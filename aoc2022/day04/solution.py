@@ -29,6 +29,6 @@ def solve_part2(entries):
 
 
 if __name__ == "__main__":  # pragma: no cover
-    entries = get_input("aoc2022/day4/input", "csv")
+    entries = get_input("aoc2022/day04/input", "csv")
     print(solve_part1(entries))
     print(solve_part2(entries))

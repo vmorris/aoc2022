@@ -1,17 +1,17 @@
-from aoc2022.day3 import solution
+from aoc2022.day05 import solution
 from aoc2022.util import get_input
 
 
-input_data = get_input("tests/testinput.day3")
+input_data = get_input("tests/testinput.day05")
 
 
 def test_solve_part1():
-    expected = 157
+    expected = "CMZ"
     actual = solution.solve_part1(input_data)
     assert expected == actual
 
 
 def test_solve_part2():
-    expected = 70
+    expected = "MCD"
     actual = solution.solve_part2(input_data)
     assert expected == actual

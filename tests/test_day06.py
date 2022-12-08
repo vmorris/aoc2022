@@ -1,4 +1,4 @@
-from aoc2022.day6 import solution
+from aoc2022.day06 import solution
 
 
 input_data = [
