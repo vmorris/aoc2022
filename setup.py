@@ -5,6 +5,7 @@ dependencies = [
     "Jinja2",
     "Click",
     "anytree",
+    "numpy",
 ]
 tests_dependencies = [
     "pytest",
