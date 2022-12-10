@@ -11,7 +11,10 @@ def test_solve_part1():
     assert expected == actual
 
 
+input_data2 = get_input("tests/testinput.day09a")
+
+
 def test_solve_part2():
     expected = 36
-    actual = solution.solve_part2(input_data)
+    actual = solution.solve_part2(input_data2)
     assert expected == actual

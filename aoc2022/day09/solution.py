@@ -1,11 +1,13 @@
 from aoc2022.util import get_input
-from dataclasses import dataclass, field
 
 
-@dataclass
-class Point:
-    x: int
-    y: int
+class Knot:
+    def __init__(self, id: int = None, x: int = 0, y: int = 0):
+        self.id = id
+        self.x = x
+        self.y = y
+        self.prev: Knot = None
+        self.next: Knot = None
 
     def move(self, change):
         self.x += change[0]
@@ -23,17 +25,22 @@ class Point:
             y_touching = True
         return x_touching and y_touching
 
+    def __repr__(self):
+        return f"Knot{self.id, (self.x,self.y)}"
 
-@dataclass
-class World:
-    head: Point = field(init=False)
-    tail: Point = field(init=False)
-    tail_visited: set = field(default_factory=set, repr=False)
 
-    def __post_init__(self):
-        self.head = Point(0, 0)
-        self.tail = Point(0, 0)
-        self.tail_visited.add(self.tail.get_location())
+class Rope:
+    def __init__(self, head: Knot):
+        self.head = head
+        self.tail_visited: set = set()
+
+    def get_tail(self) -> Knot:
+        *_, tail = self.knot_generator()
+        return tail
+
+    def add_knot(self, new_knot: Knot):
+        tail = self.get_tail()
+        tail.next = new_knot
 
     def move_head(self, command):
         movement = {
@@ -43,53 +50,69 @@ class World:
             "R": (1, 0),
         }
         direction, count = command.split()
+        print(f"move head {direction} x{count}")
         for _ in range(int(count)):
             change = movement[direction]
             self.head.move(change)
-            if not self.head.touching(self.tail):
-                self.move_tail()
+            for knot in self.knot_generator():
+                if knot.next is not None and not knot.touching(knot.next):
+                    self.move_next(knot)
+                    knot = knot.next
+                else:
+                    break
+            self.tail_visited.add(self.get_tail().get_location())
 
-    def move_tail(self):
-        if self.head.y == self.tail.y:  # same row
-            if self.head.x > self.tail.x:
-                self.tail.x += 1  # move right
+    def move_next(self, knot: Knot):
+        if knot.y == knot.next.y:  # same row
+            if knot.x > knot.next.x:
+                knot.next.move((1, 0))  # move right
             else:
-                self.tail.x -= 1  # mvoe left
-        elif self.head.x == self.tail.x:  # same column
-            if self.head.y > self.tail.y:
-                self.tail.y += 1  # move up
+                knot.next.move((-1, 0))  # mvoe left
+        elif knot.x == knot.next.x:  # same column
+            if knot.y > knot.next.y:
+                knot.next.move((0, 1))  # move up
             else:
-                self.tail.y -= 1  # move down
+                knot.next.move((0, -1))  # move down
         else:  # diagonal difference
-            if self.head.y > self.tail.y and self.head.x > self.tail.x:
-                # move up and right
-                self.tail.y += 1
-                self.tail.x += 1
-            elif self.head.y > self.tail.y and self.head.x < self.tail.x:
-                # move up and left
-                self.tail.y += 1
-                self.tail.x -= 1
-            elif self.head.y < self.tail.y and self.head.x > self.tail.x:
-                # move down and right
-                self.tail.y -= 1
-                self.tail.x += 1
+            if knot.y > knot.next.y and knot.x > knot.next.x:
+                knot.next.move((1, 1))  # move up and right
+            elif knot.y > knot.next.y and knot.x < knot.next.x:
+                knot.next.move((-1, 1))  # move up and left
+            elif knot.y < knot.next.y and knot.x > knot.next.x:
+                knot.next.move((1, -1))  # move down and right
             else:
-                # move down and left
-                self.tail.y -= 1
-                self.tail.x -= 1
-        self.tail_visited.add(self.tail.get_location())
-        assert self.head.touching(self.tail)
+                knot.next.move((-1, -1))  # move down and left
+
+    def knot_generator(self):
+        knot = self.head
+        while knot.next is not None:
+            yield knot
+            knot = knot.next
+        yield knot
+
+    def __repr__(self):
+        result = list()
+        [result.append(knot) for knot in self.knot_generator()]
+        return f"Rope:{str(result)}"
 
 
 def solve_part1(entries):
-    w = World()
+    rope = Rope(Knot(id=1))
+    rope.add_knot(Knot(id=2))
     for movement in entries:
-        w.move_head(movement)
-    return len(w.tail_visited)
+        rope.move_head(movement)
+        print(rope)
+    return len(rope.tail_visited)
 
 
 def solve_part2(entries):
-    return
+    rope = Rope(Knot(id=1))
+    for i in range(1, 10):
+        rope.add_knot(Knot(id=i))
+    for movement in entries:
+        rope.move_head(movement)
+        print(rope)
+    return len(rope.tail_visited)
 
 
 if __name__ == "__main__":  # pragma: no cover
