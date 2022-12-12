@@ -89,17 +89,17 @@ class Monkey:
         self.items = []
 
 
-def monkey_madness(monkeys, turns=20, low_stress=True, lcm=1):
+def keep_away(monkeys, turns=20, low_stress=True, lcm=1):
     for _ in range(turns):
         for monkey in monkeys:
             monkey.take_turn(monkeys, low_stress, lcm)
-    counts = sorted(list(monkey.inspection_count for monkey in monkeys))
-    return counts[-1] * counts[-2]
 
 
 def solve_part1(entries):
     monkeys = make_monkeys(entries)
-    return monkey_madness(monkeys)
+    keep_away(monkeys)
+    counts = sorted(list(monkey.inspection_count for monkey in monkeys))
+    return counts[-1] * counts[-2]
 
 
 def solve_part2(entries):
@@ -107,12 +107,14 @@ def solve_part2(entries):
     lcm = 1
     for monkey in monkeys:
         lcm *= monkey.test_divisible
-    return monkey_madness(
+    keep_away(
         monkeys,
         turns=10000,
         low_stress=False,
         lcm=lcm,
     )
+    counts = sorted(list(monkey.inspection_count for monkey in monkeys))
+    return counts[-1] * counts[-2]
 
 
 if __name__ == "__main__":  # pragma: no cover
