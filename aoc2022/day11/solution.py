@@ -73,13 +73,13 @@ class Monkey:
     def operation(self, old):
         return self.op_fun(old)
 
-    def take_turn(self, monkeys, low_stress=True, common_divisor=1):
+    def take_turn(self, monkeys, low_stress, lcm):
         for item in self.items:
             item = self.operation(item)
             if low_stress:
                 item = floor(item / 3)
             else:
-                item = item % common_divisor
+                item = item % lcm
             if item % self.test_divisible == 0:
                 target = get_monkey_by_id(self.true_monkey_id, monkeys)
             else:
@@ -89,34 +89,29 @@ class Monkey:
         self.items = []
 
 
-def monkey_madness(monkeys, turns, low_stress, common_divisor):
+def monkey_madness(monkeys, turns=20, low_stress=True, lcm=1):
     for _ in range(turns):
         for monkey in monkeys:
-            monkey.take_turn(monkeys, low_stress, common_divisor)
+            monkey.take_turn(monkeys, low_stress, lcm)
     counts = sorted(list(monkey.inspection_count for monkey in monkeys))
     return counts[-1] * counts[-2]
 
 
 def solve_part1(entries):
     monkeys = make_monkeys(entries)
-    return monkey_madness(
-        monkeys,
-        turns=20,
-        low_stress=True,
-        common_divisor=1,
-    )
+    return monkey_madness(monkeys)
 
 
 def solve_part2(entries):
     monkeys = make_monkeys(entries)
-    common_divisor = 1
+    lcm = 1
     for monkey in monkeys:
-        common_divisor *= monkey.test_divisible
+        lcm *= monkey.test_divisible
     return monkey_madness(
         monkeys,
         turns=10000,
         low_stress=False,
-        common_divisor=common_divisor,
+        lcm=lcm,
     )
 
 
