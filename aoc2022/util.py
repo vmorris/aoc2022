@@ -25,6 +25,11 @@ def get_input(f, type="str"):
             result = list()
             for line in input:
                 result.append([int(i) for i in line])
+        if type == "char-matrix":
+            """matrix, list of lists, strings split into chars"""
+            result = list()
+            for line in input:
+                result.append([*line])
     return result
 
 
